@@ -1,0 +1,32 @@
+﻿@using System.Data.SqlClient;
+@{
+    SqlDataReader rdr = ViewBag.rdr;
+}
+
+<body>
+    <div>
+        <form method="post">
+            <table border="1">
+                <tr>
+                    <th>Update Location Table</th>
+                </tr>
+                @while (rdr.Read())
+                {
+                    <tr>
+                        <th>Location_id</th>
+                        <td><input type="text" name="locnid" value="@rdr["locn_id"]" /></td>
+                    </tr>
+                    <tr>
+                        <th>Location_desc</th>
+                        <td><input type="text" name="locndesc" value="@rdr["locn_desc"]" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="submit" >Update</button>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </form>
+    </div>
+</body>

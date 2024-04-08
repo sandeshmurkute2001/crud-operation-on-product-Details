@@ -1,0 +1,34 @@
+﻿@using System.Data.SqlClient;
+@{
+    SqlDataReader rdr = ViewBag.ShowDetails;
+
+    <body>
+        <div>
+            <table border="1">
+                <tr>
+                    <th colspan="4">Location table Details</th>
+                </tr>
+                <tr>
+                <th><a asp-controller="Location" asp-action="InsertLocation"> Insert </a>
+                </th>
+                </tr>
+                <tr>
+                    <th>Location Id</th>
+                    <th>Location Desc</th>
+                    <th>Action</th>
+                </tr>
+                @while (rdr.Read())
+                {
+                    <tr>
+                    <td>@rdr["locn_id"]</td>
+                        <td>@rdr["locn_desc"]</td>
+                        <td><a asp-controller="Location" asp-action="UpdateLoc" asp-route-locnupd="@rdr["locn_id"]">Update</a></td>
+                        <td><a asp-controller="Location" asp-action="DeleteLoc" asp-route-locndel="@rdr["locn_id"]">Delete</a></td>
+                    </tr>
+
+                }
+
+            </table>
+        </div>
+    </body>
+}
